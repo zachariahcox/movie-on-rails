@@ -14,4 +14,13 @@ class MovieTest < ActiveSupport::TestCase
         refute Movie.new(title: "").valid?
         refute Movie.new(title: nil).valid?
     end
+
+    test "all" do
+        Movie.create!(title:"boo")
+        Movie.create!(title:"foo")
+        titles = Movie.titles
+        assert_includes titles, "boo"
+        assert_includes titles, "foo"
+        # assert_includes titles, "nope"
+    end
 end
